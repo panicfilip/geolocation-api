@@ -185,4 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'api_key' => env('API_KEY'),
+    'geo1_api_key' => env('GEO1_API_KEY'),
+
 ];
