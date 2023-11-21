@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
             return new GeolocationService([
                 $app->make(Geo1Provider::class),
                 $app->make(Geo2Provider::class),
-//                $app->make(Geo3Provider::class),
-                // Add more geolocators as needed
+                $app->make(Geo3Provider::class),
+                // Add more providers as needed
             ]);
         });
 
