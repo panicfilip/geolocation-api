@@ -25,7 +25,7 @@ class GeolocationService
         if ($country) {
             return $country;
         }
-
+        
         foreach ($this->geoLocators as $geoLocator) {
 
             try {

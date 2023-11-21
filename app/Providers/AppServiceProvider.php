@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(GeolocationService::class, function ($app) {
             return new GeolocationService([
                 $app->make(Geo1Provider::class),
-//                $app->make(Geo2Provider::class),
+                $app->make(Geo2Provider::class),
 //                $app->make(Geo3Provider::class),
                 // Add more geolocators as needed
             ]);

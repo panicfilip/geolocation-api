@@ -187,5 +187,6 @@ return [
 
     'api_key' => env('API_KEY'),
     'geo1_api_key' => env('GEO1_API_KEY'),
+    'geo2_token' => env('GEO2_TOKEN'),
 
 ];

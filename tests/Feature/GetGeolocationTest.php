@@ -36,4 +36,25 @@ class GetGeolocationTest extends TestCase
         $response->assertOk();
         $response->assertJsonFragment(['ip' => $ip, 'iso2' => $countryISO]);
     }
+
+    public function test_get_geolocation_from_geo2(): void
+    {
+        $encodedIP = base64_encode($ip = $this->faker->ipv4());
+        $apiKey = config('app.api_key');
+        $countryISO = 'IL';
+
+        $this->instance(
+            Geo2Provider::class,
+            Mockery::mock(Geo2Provider::class, fn (MockInterface $mock) =>
+            $mock->shouldReceive('locate')
+                ->once()
+                ->andReturn(new Geolocation($ip, $countryISO))
+            )
+        );
+
+        $response = $this->get('/ip?find=' . $encodedIP . '&api_key=' . $apiKey);
+
+        $response->assertOk();
+        $response->assertJsonFragment(['ip' => $ip, 'iso2' => $countryISO]);
+    }
 }

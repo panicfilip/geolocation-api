@@ -9,7 +9,7 @@ class GetGeolocationXTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_get_server_error_from_geo1_when_find_is_not_provided(): void
+    public function test_get_server_error_when_find_is_not_provided(): void
     {
         $apiKey = 'secret';
 
@@ -19,7 +19,7 @@ class GetGeolocationXTest extends TestCase
         $response->assertJson(['reason' => trans('errors.geolocation_failed')]);
     }
 
-    public function test_get_unauthorized_error_from_geo1_with_invalid_api_key(): void
+    public function test_get_unauthorized_error_with_invalid_api_key(): void
     {
         $apiKey = 'falseSecret';
 
@@ -29,11 +29,11 @@ class GetGeolocationXTest extends TestCase
         $response->assertJson(['reason' => trans('errors.api_key')]);
     }
 
-    public function test_get_server_error_from_geo1_with_invalid_find(): void
+    public function test_get_server_error_with_invalid_find(): void
     {
         $encodedIP = base64_encode($this->faker->ipv4());
         $apiKey = 'secret';
-        
+
         $response = $this->get('/ip?find=' . $encodedIP . '&api_key=' . $apiKey);
 
         $response->assertServerError();
